@@ -1,8 +1,8 @@
 'use client'
+import React from 'react';
 import dynamic from 'next/dynamic';
 
-
-const Map = dynamic(() => import("./map/page"), {
+const Map = dynamic(() => import("./component/map"), {
   loading: () => <p>loading...</p>,
   ssr: false
 })
