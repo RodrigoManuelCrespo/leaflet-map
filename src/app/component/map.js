@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Map, marker, tileLayer } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 
-function App() {
+function MapComponent() {
     const [map, setMap] = useState();
     const mapInit = useRef(false);
     const initMap = () => {
@@ -37,4 +37,4 @@ function App() {
         <div id="map" style={{ width: "100%", height: '100vh' }}></div>
     );
 }
-export default App;
+export default MapComponent;
