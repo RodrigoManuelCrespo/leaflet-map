@@ -1,27 +1,38 @@
-// 'use client'
+import React, { useEffect, useRef, useState } from 'react';
+import { Map, marker, tileLayer } from 'leaflet';
+import 'leaflet/dist/leaflet.css'
 
-// import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-// import 'leaflet/dist/leaflet.css'
-// import { icon } from 'leaflet';
+function App() {
+    const [map, setMap] = useState();
+    const mapInit = useRef(false);
+    const initMap = () => {
+        map && tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    }
+    const addMarker = () => { // <===============
+        map && marker([-33.8678, 151.21]).addTo(map)
+    }
 
-// const ICON = icon({
-//     iconUrl: './placeholder.png',
-//     iconSize: [40, 40],
-// })
-
-// const Mapa = () => {
-//     return (
-//         <div style={{ width: "100%", height: "100%" }}>
-//             <MapContainer style={{ height: '100vh', width: '100wh' }}
-//                 center={[51.505, -0.09]} zoom={50} scrollWheelZoom={false}>
-//                 <TileLayer
-//                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//                 />
-//                 <Marker icon={ICON} position={[51.505, -0.09]} />
-//             </MapContainer>
-//         </div>
-//     );
-// };
-
-// export default Mapa;
+    useEffect(() => {
+        if (!mapInit.current) {
+            // Damos por inicializado el mapa
+            mapInit.current = true;
+            // Asignamos el contenedor del mapa
+            setMap(
+                new Map('map', {
+                    center: [-33.8678, 151.21], // Centramos en Sidney
+                    zoom: 15,
+                }).setView([-33.8678, 151.21]) // Sidney
+            )
+        }
+        if (map) {
+            initMap();
+        }
+    }, [mapInit, map])
+    return (
+        <div id="map" style={{ width: "100%", height: '100vh' }}></div>
+    );
+}
+export default App;
