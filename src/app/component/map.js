@@ -12,7 +12,8 @@ function MapComponent() {
     let lng = searchParams.get('lng')
     let lat = searchParams.get('lat')
     let img = searchParams.get('img')
-
+    let color = searchParams.get('color')
+    console.log(color);
     const mapInit = useRef(false);
 
     const initMap = () => {
@@ -28,7 +29,7 @@ function MapComponent() {
             if (img) {
                 icon = L.divIcon({
                     className: 'custom-div-icon',
-                    html: `<div style='background-color:black;' class='marker-pin'></div><img src="${img}">`,
+                    html: `<div style='background-color:#3d3d3d;' class='marker-pin'></div><img src="${img}">`,
                     iconSize: [30, 42],
                     iconAnchor: [15, 42]
                 });
