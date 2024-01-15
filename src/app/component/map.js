@@ -12,8 +12,6 @@ function MapComponent() {
     let lng = searchParams.get('lng')
     let lat = searchParams.get('lat')
     let img = searchParams.get('img')
-    let color = searchParams.get('color')
-    console.log(color);
     const mapInit = useRef(false);
 
     const initMap = () => {
